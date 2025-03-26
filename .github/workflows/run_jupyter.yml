@@ -19,7 +19,7 @@ jobs:
       - name: Install Dependencies
         run: |
           pip install --upgrade pip
-          pip install numpy pandas scikit-learn xgboost underthesea jupyterlab notebook ipykernel papermill
+          pip install numpy pandas scikit-learn xgboost underthesea jupyterlab notebook ipykernel papermill openpyxl
 
       - name: Register Jupyter Kernel
         run: |
