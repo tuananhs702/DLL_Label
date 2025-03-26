@@ -1,0 +1,34 @@
+name: Run Jupyter Notebook Manually
+
+on:
+  workflow_dispatch:  # Chạy thủ công từ tab Actions trên GitHub
+
+jobs:
+  run-notebook:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      - name: Install Dependencies
+        run: |
+          pip install --upgrade pip
+          pip install numpy pandas scikit-learn xgboost underthesea
+
+      - name: Run Jupyter Notebook
+        run: |
+          papermill your_notebook.ipynb output.ipynb
+
+      - name: Commit and Push Output
+        run: |
+          git config --global user.name "github-actions"
+          git config --global user.email "github-actions@github.com"
+          git add output.ipynb
+          git commit -m "Auto-update output notebook" || echo "No changes to commit"
+          git push
