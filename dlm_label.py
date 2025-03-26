@@ -18,17 +18,11 @@ from sklearn.multioutput import MultiOutputClassifier
 
 df_dl=pd.read_excel('du_lieu_mau_50k.xlsx')
 df_result=df_dl[['Product_List','label']]
-# df_result = df_dl.get(['Product_List', 'label'])
-if df_result is None:
-    print("Cột không tồn tại, vui lòng kiểm tra lại tên cột trong file Excel!")
-else:
-  df_result=pd.DataFrame(df_result)
-  df_result
-print(df_result.head())  # Xem trước 5 dòng dữ liệu
-print(df_result.info())  # Kiểm tra kiểu dữ liệu
+df_result=pd.DataFrame(df_result)
+df_result
 
 # Tokenize text
-vocab_size =70000
+vocab_size =30000
 window_size = 2  # Number of words before & after target word
 embedding_dim = 150
 df_result["Tokenized"] = df_result["Product List"].apply(lambda x: word_tokenize(x, format="text").split())
