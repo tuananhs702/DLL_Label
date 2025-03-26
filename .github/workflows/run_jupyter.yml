@@ -1,10 +1,10 @@
-name: Run Jupyter Notebook Manually
+name: Run Python Script Manually
 
 on:
   workflow_dispatch:  # Chỉ chạy khi kích hoạt thủ công từ GitHub Actions
 
 jobs:
-  run-notebook:
+  run-script:
     runs-on: ubuntu-latest
 
     steps:
@@ -21,23 +21,12 @@ jobs:
           pip install --upgrade pip
           pip install numpy pandas scikit-learn xgboost underthesea jupyterlab notebook ipykernel papermill openpyxl
 
-      - name: Register Jupyter Kernel
+      - name: Run Python Script
         run: |
-          python -m ipykernel install --user --name=python3
-
-      - name: Verify Papermill Installation
-        run: |
-          jupyter kernelspec list
-          python -m pip show papermill
-
-      - name: Run Jupyter Notebook
-        run: |
-          python -m papermill DLM_label.ipynb output.ipynb
+          python DLM_label.py
 
       - name: Commit and Push Output
         run: |
           git config --global user.name "github-actions"
           git config --global user.email "github-actions@github.com"
-          git add output.ipynb
-          git commit -m "Auto-update output notebook" || echo "No changes to commit"
-          git push
+          git
