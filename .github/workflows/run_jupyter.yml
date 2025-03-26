@@ -19,11 +19,16 @@ jobs:
       - name: Install Dependencies
         run: |
           pip install --upgrade pip
-          pip install numpy pandas scikit-learn xgboost underthesea
+          pip install numpy pandas scikit-learn xgboost underthesea papermill
+
+      - name: Verify Papermill Installation
+        run: |
+          python -m pip show papermill
+          python -m papermill --help
 
       - name: Run Jupyter Notebook
         run: |
-          papermill DLM_label.ipynb output.ipynb
+          python -m papermill DLM_label.ipynb output.ipynb
 
       - name: Commit and Push Output
         run: |
