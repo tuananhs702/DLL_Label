@@ -17,7 +17,7 @@ from sklearn.multioutput import MultiOutputClassifier
 
 
 df_dl=pd.read_excel('du_lieu_mau_50k.xlsx')
-df_result=df_dl[['Product_List','label']]
+df_result=df_dl[['Product List','label']]
 df_result=pd.DataFrame(df_result)
 df_result
 
