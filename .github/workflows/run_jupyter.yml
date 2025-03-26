@@ -1,7 +1,7 @@
 name: Run Jupyter Notebook Manually
 
 on:
-  workflow_dispatch:  # Chạy thủ công từ tab Actions trên GitHub
+  workflow_dispatch:  # Chỉ chạy khi kích hoạt thủ công từ GitHub Actions
 
 jobs:
   run-notebook:
@@ -23,7 +23,7 @@ jobs:
 
       - name: Run Jupyter Notebook
         run: |
-          papermill your_notebook.ipynb output.ipynb
+          papermill DLM_label.ipynb output.ipynb
 
       - name: Commit and Push Output
         run: |
