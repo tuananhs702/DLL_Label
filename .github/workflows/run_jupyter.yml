@@ -26,9 +26,12 @@ jobs:
           python dlm_label.py
 
       - name: Commit and Push Output
+        env:
+          GH_PAT: ${{ secrets.GH_PAT }}
         run: |
           git config --global user.name "github-actions"
           git config --global user.email "github-actions@github.com"
+          git remote set-url origin https://$GH_PAT@github.com/tuananhs702/DLL_Label.git
           git add .
           git commit -m "Auto-update after running Python script" || echo "No changes to commit"
-          git push
+          git push origin main
