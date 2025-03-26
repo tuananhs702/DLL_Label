@@ -18,8 +18,8 @@ from sklearn.multioutput import MultiOutputClassifier
 
 # df_dl=pd.read_excel('du_lieu_mau_50k.xlsx')
 # Đọc hai file Excel
-df1 = pd.read_excel("du_lieu_mau_500k_1.xlsx")
-df2 = pd.read_excel("du_lieu_mau_500k_2.xlsx")
+df1 = pd.read_excel("du_lieu_mau_550k_1.xlsx")
+df2 = pd.read_excel("du_lieu_mau_550k_2.xlsx")
 
 # Ghép hai dataframe lại với nhau
 df_result = pd.concat([df1, df2], ignore_index=True)
@@ -29,7 +29,7 @@ df_result=pd.DataFrame(df_result)
 df_result
 
 # Tokenize text
-vocab_size =20000
+vocab_size =140000
 window_size = 2  # Number of words before & after target word
 embedding_dim = 150
 df_result["Tokenized"] = df_result["Product List"].apply(lambda x: word_tokenize(x, format="text").split())
@@ -72,7 +72,7 @@ def f(X_ij):
 # Hyperparameters
 learning_rate = 0.01  # Start with a higher LR, then decay
 num_epochs = 50
-batch_size = 500  # Mini-batch size
+batch_size = 1000  # Mini-batch size
 decay_factor = 0.99  # Learning rate decay
 clip_value = 5  # Gradient clipping
 
@@ -181,7 +181,7 @@ print(f"Classification Accuracy: {accuracy:.2f}")
 import joblib
 
 # Lưu mô hình vào file .pkl
-joblib.dump(classifier, 'model_50k.pkl')
+joblib.dump(classifier, 'model_550k.pkl')
 print("Mô hình đã được lưu thành công!")
 
 # def predict_new_test_set(df):
@@ -243,4 +243,4 @@ def save_to_json(data, filename):
         json.dump({key: value.tolist() for key, value in data.items()}, f)
 
 # Lưu dictionary vào file JSON
-save_to_json(word_embedding_dict, "word_embeddings_50k.json")
+save_to_json(word_embedding_dict, "word_embeddings_550k.json")
