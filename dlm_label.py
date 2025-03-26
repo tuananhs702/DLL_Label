@@ -22,7 +22,7 @@ df1 = pd.read_excel("du_lieu_mau_550k_1.xlsx")
 df2 = pd.read_excel("du_lieu_mau_550k_2.xlsx")
 
 # Ghép hai dataframe lại với nhau
-df_result = pd.concat([df1, df2], ignore_index=True)
+df_dl = pd.concat([df1, df2], ignore_index=True)
 
 df_result=df_dl[['Product List','label']]
 df_result=pd.DataFrame(df_result)
