@@ -21,7 +21,7 @@ df_dl=pd.read_excel('du_lieu_mau_50k.xlsx')
 df_result = df_dl.get(['Product_List', 'label'])
 if df_result is None:
     print("Cột không tồn tại, vui lòng kiểm tra lại tên cột trong file Excel!")
-else
+else:
   df_result=pd.DataFrame(df_result)
   df_result
 print(df_result.head())  # Xem trước 5 dòng dữ liệu
