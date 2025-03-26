@@ -22,7 +22,7 @@ df_result=pd.DataFrame(df_result)
 df_result
 
 # Tokenize text
-vocab_size =30000
+vocab_size =20000
 window_size = 2  # Number of words before & after target word
 embedding_dim = 150
 df_result["Tokenized"] = df_result["Product List"].apply(lambda x: word_tokenize(x, format="text").split())
