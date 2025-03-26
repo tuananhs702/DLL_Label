@@ -23,7 +23,7 @@ jobs:
 
       - name: Run Python Script
         run: |
-          python DLM_label.py
+          python dlm_label.py
 
       - name: Commit and Push Output
         run: |
