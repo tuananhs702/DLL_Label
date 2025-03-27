@@ -1,4 +1,4 @@
-name: Run Python Script Manually
+name: Run Python DLL_Label
 
 on:
   workflow_dispatch:  # Chỉ chạy khi kích hoạt thủ công từ GitHub Actions
@@ -19,11 +19,25 @@ jobs:
       - name: Install Dependencies
         run: |
           pip install --upgrade pip
-          pip install numpy pandas scikit-learn xgboost underthesea jupyterlab notebook ipykernel papermill openpyxl underthesea
+          pip install numpy pandas scikit-learn xgboost underthesea jupyterlab notebook ipykernel papermill openpyxl
 
       - name: Run Python Script
         run: |
           python dlm_label.py
+
+      - name: Install rclone
+        run: |
+          curl https://rclone.org/install.sh | sudo bash
+
+      - name: Configure rclone
+        run: |
+          mkdir -p ~/.config/rclone
+          echo "${{ secrets.RCLONE_CONFIG }}" > ~/.config/rclone/rclone.conf
+
+      - name: Upload large files to Google Drive
+        run: |
+          rclone copy model_550k.pkl ggdrive:/Data_Automate/ --progress
+          rclone copy word_embeddings_550k.json ggdrive:/Data_Automate/ --progress
 
       - name: Commit and Push Output
         env:
@@ -31,7 +45,7 @@ jobs:
         run: |
           git config --global user.name "github-actions"
           git config --global user.email "github-actions@github.com"
-          git remote set-url origin https://$GH_PAT@github.com/tuananhs702/DLL_Label.git
+          git remote set-url origin https://x-access-token:${GH_PAT}@github.com/tuananhs702/DLL_Label.git
           git add .
           git commit -m "Auto-update after running Python script" || echo "No changes to commit"
           git push origin main
