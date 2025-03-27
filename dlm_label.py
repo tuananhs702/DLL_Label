@@ -45,7 +45,7 @@ vocab = list(word_counts.keys())[:vocab_size]
 word_to_index = {word: i for i, word in enumerate(vocab)}
 
 # Initialize co-occurrence matrix
-co_occurrence_matrix = np.zeros((len(vocab), len(vocab)))
+co_occurrence_matrix = np.zeros((len(vocab), len(vocab)), dtype=np.int16)
 
 # Populate the co-occurrence matrix
 for tokens in df_result["Tokenized"]:
