@@ -29,7 +29,7 @@ df_result=pd.DataFrame(df_result)
 df_result
 
 # Tokenize text
-vocab_size =100000
+vocab_size =500000
 window_size = 2  # Number of words before & after target word
 embedding_dim = 150
 df_result["Tokenized"] = df_result["Product List"].apply(lambda x: word_tokenize(x, format="text").split())
@@ -181,7 +181,7 @@ print(f"Classification Accuracy: {accuracy:.2f}")
 import joblib
 
 # Lưu mô hình vào file .pkl
-joblib.dump(classifier, 'model_550k.pkl')
+joblib.dump(classifier, 'model_550k_v2.pkl')
 print("Mô hình đã được lưu thành công!")
 
 # def predict_new_test_set(df):
@@ -243,4 +243,4 @@ def save_to_json(data, filename):
         json.dump({key: value.tolist() for key, value in data.items()}, f)
 
 # Lưu dictionary vào file JSON
-save_to_json(word_embedding_dict, "word_embeddings_550k.json")
+save_to_json(word_embedding_dict, "word_embeddings_550k_v2.json")
